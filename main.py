@@ -45,8 +45,16 @@ class Channel:
         print(json.dumps(self.channel, indent=2, ensure_ascii=False))
 
 
-vdud = Channel('UCMCgOm8GZkHp8zJ6l7_hIuA')
-vdud.print_info()
-print(Channel.get_service())
-# vdud.channel_id = 'Новое название'
-vdud.to_json('vdud.json')
+    def __str__(self):
+        """Выводит через print() информацию о канале"""
+        return f'Youtube-канал: {self.title}'
+
+
+    def __add__(self, other) -> int:
+        """Складывает каналы по количеству подписчиков"""
+        return int(self.subscriber_count) + int(other.subscriber_count)
+
+
+    def __lt__(self, other):
+        """Сравнивает между собой по количеству подписчиков"""
+        return self.subscriber_count > other.subscriber_count
