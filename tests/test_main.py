@@ -1,4 +1,4 @@
-from main import Channel, Video, PLVideo
+from main import Channel, Video, PLVideo, PlayList
 import pytest
 
 
@@ -10,6 +10,12 @@ def ch1():
 @pytest.fixture
 def ch2():
     return Channel('UC1eFXmJNkjITxPFWTy6RsWg')
+
+
+@pytest.fixture
+def pl():
+    return PlayList('PLguYHBi01DWr4bRWc4uaguASmo7lW4GCb')
+
 
 @pytest.fixture
 def video1():
@@ -35,3 +41,13 @@ def test_str(video1):
 
 def test_str(video2):
     assert video2.__str__() == 'Пушкин: наше все? (Литература)'
+
+
+def test_playlist(pl):
+    assert pl.title == 'Редакция. АнтиТревел'
+    assert pl.url == 'https://www.youtube.com/playlist?list=PLguYHBi01DWr4bRWc4uaguASmo7lW4GCb'
+    duration = pl.total_duration
+    assert str(duration) == '3:41:01'
+    assert str(type(duration)) == "<class 'datetime.timedelta'>"
+    assert str(duration.total_seconds()) == '13261.0'
+    assert pl.show_best_video() == 'https://www.youtube.com/watch?v=9Bv2zltQKQA'

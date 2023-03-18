@@ -15,7 +15,16 @@ if __name__ == '__main__':
     # print(ch1 > ch2)
     # print(ch1 < ch2)
 
-    video1 = Video('9lO06Zxhu88')
-    video2 = PLVideo('BBotskuyw_M', 'PL7Ntiz7eTKwrqmApjln9u4ItzhDLRtPuD')
-    print(video1)
-    print(video2)
+    # video1 = Video('9lO06Zxhu88')
+    # video2 = PLVideo('BBotskuyw_M', 'PL7Ntiz7eTKwrqmApjln9u4ItzhDLRtPuD')
+    # print(video1)
+    # print(video2)
+
+    pl = PlayList('PLguYHBi01DWr4bRWc4uaguASmo7lW4GCb')
+    print(pl.title)
+    print(pl.url)
+    duration = pl.total_duration
+    print(duration)
+    print(type(duration))
+    print(duration.total_seconds())
+    print(pl.show_best_video())
