@@ -51,3 +51,9 @@ def test_playlist(pl):
     assert str(type(duration)) == "<class 'datetime.timedelta'>"
     assert str(duration.total_seconds()) == '13261.0'
     assert pl.show_best_video() == 'https://www.youtube.com/watch?v=9Bv2zltQKQA'
+
+
+def test_video():
+    broken_video = Video('broken_video_id')
+    assert broken_video.video_title == None
+    assert broken_video.like_count == None
