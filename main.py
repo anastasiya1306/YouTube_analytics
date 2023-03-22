@@ -64,10 +64,18 @@ class Video:
         self.video_id = video_id
         api_key: str = os.getenv('YouTube_API')
         youtube = build('youtube', 'v3', developerKey=api_key)
-        self.video_response = youtube.videos().list(part='snippet,statistics', id=video_id).execute()
-        self.video_title = self.video_response['items'][0]['snippet']['title']
-        self.view_count = self.video_response['items'][0]['statistics']['viewCount']
-        self.like_count = self.video_response['items'][0]['statistics']['likeCount']
+        try:
+            self.video_response = youtube.videos().list(part='snippet,statistics', id=video_id).execute()
+            self.video_title = self.video_response['items'][0]['snippet']['title']
+            self.view_count = self.video_response['items'][0]['statistics']['viewCount']
+            self.like_count = self.video_response['items'][0]['statistics']['likeCount']
+        #Если пользователь передал id, с которым невозможно получить данные о видео по API,
+        #то у экземпляра инициализируется только свойство video_id, а остальные поля принимают значение None
+        except Exception:
+            self.video_title = None
+            self.view_count = None
+            self.like_count = None
+
 
     def __str__(self) -> str:
         """Выводит через print() информацию о видео"""
@@ -119,4 +127,3 @@ class PlayList:
             videos[int(self.video_response['items'][i]['statistics']['likeCount'])] = self.video_ids[i]
 
         return f"https://www.youtube.com/watch?v={videos[max(videos)]}"
-

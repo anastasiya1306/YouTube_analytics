@@ -20,11 +20,14 @@ if __name__ == '__main__':
     # print(video1)
     # print(video2)
 
-    pl = PlayList('PLguYHBi01DWr4bRWc4uaguASmo7lW4GCb')
-    print(pl.title)
-    print(pl.url)
-    duration = pl.total_duration
-    print(duration)
-    print(type(duration))
-    print(duration.total_seconds())
-    print(pl.show_best_video())
+    # pl = PlayList('PLguYHBi01DWr4bRWc4uaguASmo7lW4GCb')
+    # print(pl.title)
+    # print(pl.url)
+    # duration = pl.total_duration
+    # print(duration)
+    # print(type(duration))
+    # print(duration.total_seconds())
+    # print(pl.show_best_video())
+    broken_video = Video('broken_video_id')
+    print(broken_video.video_title)
+    print(broken_video.like_count)
