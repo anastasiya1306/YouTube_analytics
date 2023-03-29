@@ -3,6 +3,8 @@ import json
 from googleapiclient.discovery import build
 import isodate
 import datetime
+import requests
+from urllib.error import HTTPError
 
 
 class Channel:
@@ -71,7 +73,8 @@ class Video:
             self.like_count = self.video_response['items'][0]['statistics']['likeCount']
         #Если пользователь передал id, с которым невозможно получить данные о видео по API,
         #то у экземпляра инициализируется только свойство video_id, а остальные поля принимают значение None
-        except Exception:
+        except requests.exceptions.HTTPError as http_err:
+            print(f"HTTP-ошибка: {http_err}")
             self.video_title = None
             self.view_count = None
             self.like_count = None
